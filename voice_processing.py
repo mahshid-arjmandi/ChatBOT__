@@ -5,7 +5,6 @@ import sounddevice as sd
 import soundfile as sf
 import speech_recognition as sr
 import logging
-import google.generativeai as genai
 import asyncio
 import pygame
 import nest_asyncio
@@ -21,13 +20,6 @@ import playing_anonymized_sound
 token = "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"
 login(token)
 
-# Configuration
-LLM_API_KEY = 'AIzaSyBfF0aEh8ygArvvRy5v2l1G_xoMSHwyCJk'  # Your Google Gemini API key
-
-LLM_ENDPOINT = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={LLM_API_KEY}'
-
-
-
 
 def load_model():
     model_name = "HooshvareLab/gpt2-fa"
@@ -39,15 +31,7 @@ def load_model():
         print(f"Error loading model: {e}")
         return None
 
-# Configure Google Generative AI
-genai.configure(api_key=LLM_API_KEY)
-nest_asyncio.apply()  # For async compatibility in PyCharm
-
-# Setup logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-
-# 1. Voice Input
+# Voice Input
 def record_audio(filename):
     """Records audio from the microphone and saves it as a WAV file."""
     duration = 5  # Duration in seconds
@@ -67,7 +51,7 @@ def record_audio(filename):
     logging.info(f"Audio saved as: {filename}")
 
 
-# 2. Language Detection and Recognition
+# Language Detection and Recognition
 def recognize_speech(filename):
     """Attempts to recognize speech from an audio file in either Persian or English."""
     recognizer = sr.Recognizer()
@@ -107,9 +91,9 @@ def recognize_speech(filename):
     return None, None  # Return None if both attempts fail
 
 
-# 3. LLM Integration using Google Generative AI
+# LLM Integration using HooshvareLab/gpt2-fa
 def process_text(question_text):
-    """Uses Google Generative AI to process the input text and returns the response."""
+    """Uses LLM Integration using HooshvareLab/gpt2-fa to process the input text and returns the response."""
     model = load_model()
     response = model(question_text, max_length=100, num_return_sequences=1, temperature=0.9, truncation=True)
 
@@ -121,13 +105,7 @@ def process_text(question_text):
         return None
 
 
-
-# Step 4: Convert processed text to speech
-
-
-
-
-#step5
+#Anonymize
 def anonymous(input_user):
 
     if input_user=='Y':
@@ -149,7 +127,7 @@ def anonymous(input_user):
 
 
 
-# 6. Main Function
+# Main Function
 def main():
     """Main function to coordinate the workflow."""
     input_filename = 'input.wav'  # The WAV file where the audio input will be saved
