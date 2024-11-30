@@ -15,7 +15,7 @@ def play_music():
     pygame.mixer.music.play()
     print("Playing output_anonymized...")
 
-# ماژول برای بررسی وضعیت پخش موسیقی
+# ماژول برای بررسی وضعیت پخش صدا
 def wait_until_music_ends():
     while pygame.mixer.music.get_busy():
         pygame.time.Clock().tick(10)
