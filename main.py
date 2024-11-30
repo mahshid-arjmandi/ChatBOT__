@@ -4,7 +4,6 @@ from langdetect import detect, DetectorFactory
 # تنظیم یک دانه برای تکرارپذیری
 DetectorFactory.seed = 0
 
-
 class Translator:
     def __init__(self, model_path, target_lang='en'):
         self.model = M2M100ForConditionalGeneration.from_pretrained(model_path)
