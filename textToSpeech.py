@@ -6,7 +6,7 @@ import pygame
 from main import get_translation
 from langdetect import detect, DetectorFactory
 import time
-# فعال‌سازی nest_asyncio برای استفاده از asyncio.run()
+
 nest_asyncio.apply()
 
 
