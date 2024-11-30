@@ -10,7 +10,7 @@ def load_mp3(file_path):
     pygame.mixer.music.load(file_path)
     print(f"Loaded: {file_path}")
 
-# ماژول برای پخش موسیقی
+# ماژول برای پخش voice 
 def play_music():
     pygame.mixer.music.play()
     print("Playing output_anonymized...")
@@ -29,10 +29,10 @@ def main_playing_anonymized_sound(file_path):
     # بارگذاری فایل MP3
     load_mp3(file_path)
 
-    # پخش موسیقی
+    # پخش voice
     play_music()
 
-    # منتظر ماندن تا پایان موسیقی
+    # منتظر ماندن تا پایان voice
     wait_until_music_ends()
 
 if __name__ == "__main__":
